@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.jenkinsci.plugins.deploy.weblogic;
+package org.jenkinsci.plugins.deploy.weblogic.selector;
 
 import hudson.FilePath;
 import hudson.maven.MavenBuild;
@@ -16,11 +16,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
+import org.jenkinsci.plugins.deploy.weblogic.selector.ArtifactSelector;
 
 /**
  * @author rchaumie
@@ -32,7 +32,7 @@ public class MavenJobArtifactSelectorImpl implements ArtifactSelector {
 	
 	/*
 	 * (non-Javadoc)
-	 * @see org.jenkinsci.plugins.deploy.weblogic.ArtifactSelector#selectArtifactRecorded(hudson.model.AbstractBuild, hudson.model.BuildListener, java.lang.String, java.lang.String)
+	 * @see org.jenkinsci.plugins.deploy.weblogic.selector.ArtifactSelector#selectArtifactRecorded(hudson.model.AbstractBuild, hudson.model.BuildListener, java.lang.String, java.lang.String)
 	 */
 	public FilePath selectArtifactRecorded(AbstractBuild<?, ?> build, BuildListener listener, String filteredResource, String baseDirectory) throws IOException, XmlPullParserException, InterruptedException  {
 		
@@ -90,7 +90,7 @@ public class MavenJobArtifactSelectorImpl implements ArtifactSelector {
 	
 	/*
 	 * (non-Javadoc)
-	 * @see org.jenkinsci.plugins.deploy.weblogic.ArtifactSelector#getName()
+	 * @see org.jenkinsci.plugins.deploy.weblogic.selector.ArtifactSelector#getName()
 	 */
 	public String getName() {
 		return "MavenModuleProject";

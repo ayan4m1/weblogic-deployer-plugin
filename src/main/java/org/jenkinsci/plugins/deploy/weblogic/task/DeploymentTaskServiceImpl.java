@@ -127,17 +127,10 @@ public class DeploymentTaskServiceImpl implements DeploymentTaskService {
 			if(hudson.maven.AbstractMavenProject.class.isAssignableFrom(jobType)){
 				artifactSelector = new MavenJobArtifactSelectorImpl();
 			}
-			// Cas d'un projet freestyle
-			else if(hudson.model.FreeStyleProject.class.isAssignableFrom(jobType)){
-				artifactSelector = new FreeStyleJobArtifactSelectorImpl();
-			}
-			
-			//Test d'acquisition d'un selecteur
-			if(artifactSelector == null){
-				IOUtils.closeQuietly(deploymentLogOut);
-				throw new RuntimeException("No artifact selector has been found for the jop type ["+jobType+"]");
-			}
-			
+			else {
+                artifactSelector = new FreeStyleJobArtifactSelectorImpl();
+            }
+
 			listener.getLogger().println("[WeblogicDeploymentPlugin] - ArtifactSelector used : "+artifactSelector);
 			FilePath selectedArtifact = artifactSelector.selectArtifactRecorded(build, listener, task.getBuiltResourceRegexToDeploy(), task.getBaseResourcesGeneratedDirectory());
 			// Ne devrait pas etre le nom mais la valeur finale du artifact.name (sans l'extension)

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.jenkinsci.plugins.deploy.weblogic;
+package org.jenkinsci.plugins.deploy.weblogic.selector;
 
 import hudson.FilePath;
 import hudson.model.BuildListener;

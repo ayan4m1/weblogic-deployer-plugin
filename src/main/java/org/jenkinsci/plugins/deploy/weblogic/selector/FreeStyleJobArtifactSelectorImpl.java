@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.jenkinsci.plugins.deploy.weblogic;
+package org.jenkinsci.plugins.deploy.weblogic.selector;
 
 import hudson.FilePath;
 import hudson.model.BuildListener;
@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
+import org.jenkinsci.plugins.deploy.weblogic.selector.ArtifactSelector;
 
 /**
  * @author rchaumie
@@ -25,7 +26,7 @@ public class FreeStyleJobArtifactSelectorImpl implements ArtifactSelector {
 	
 	/*
 	 * (non-Javadoc)
-	 * @see org.jenkinsci.plugins.deploy.weblogic.ArtifactSelector#selectArtifactRecorded(hudson.model.AbstractBuild, hudson.model.BuildListener, java.lang.String, java.lang.String)
+	 * @see org.jenkinsci.plugins.deploy.weblogic.selector.ArtifactSelector#selectArtifactRecorded(hudson.model.AbstractBuild, hudson.model.BuildListener, java.lang.String, java.lang.String)
 	 */
 	public FilePath selectArtifactRecorded(AbstractBuild<?, ?> build, BuildListener listener, String filteredResource, String baseDirectory) throws IOException, XmlPullParserException, InterruptedException  {
 		
@@ -34,7 +35,7 @@ public class FreeStyleJobArtifactSelectorImpl implements ArtifactSelector {
         listener.getLogger().println("[WeblogicDeploymentPlugin] - Retrieving artifacts recorded [filtered resources on "+filteredResource+"]...");
         List<FilePath> artifactsRecorded = new ArrayList<FilePath>();
         
-        // On parcours le workspace si aucun repertoire de base specifie à la recherche d'un fichier correspondant à l'expression régulière
+        // On parcours le workspace si aucun repertoire de base specifie ï¿½ la recherche d'un fichier correspondant ï¿½ l'expression rï¿½guliï¿½re
         if(baseDirectory == null || ! (new File(baseDirectory)).exists()){
 	        FilePath workspace = build.getWorkspace();
 	        List<FilePath> filesInWorkspace = workspace.list();
@@ -78,7 +79,7 @@ public class FreeStyleJobArtifactSelectorImpl implements ArtifactSelector {
 	
 	/*
 	 * (non-Javadoc)
-	 * @see org.jenkinsci.plugins.deploy.weblogic.ArtifactSelector#getName()
+	 * @see org.jenkinsci.plugins.deploy.weblogic.selector.ArtifactSelector#getName()
 	 */
 	public String getName() {
 		return "FreeStyleProject";
